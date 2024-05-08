@@ -8,10 +8,11 @@ function App() {
     const storedTodos = localStorage.getItem("todos");
     return storedTodos ? JSON.parse(storedTodos) : [];
   });
+
   const [filter, setFilter] = useState("all");
   const [theme, setTheme] = useState("light");
 
-  // Save todos to local storage whenever it changes
+  // guardar todos en localStorage cuando sea que cambien
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -37,9 +38,9 @@ function App() {
   }
 
   return (
-<div className={`App ${theme === "dark" ? "dark" : ""}`}>
+    <div className={`App ${theme === "dark" ? "dark" : ""}`}>
       <header className="py-4 px-6 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Todo App</h1>
+        <h1 className="text-2xl font-bold">T O D O</h1>
         <button
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           className="text-gray-600 dark:text-gray-400"
@@ -47,6 +48,7 @@ function App() {
           {theme === "light" ? "🌙" : "☀️"}
         </button>
       </header>
+
       <div className="px-6 py-4">
         <form
           onSubmit={(e) => {
@@ -61,11 +63,12 @@ function App() {
           <input
             type="text"
             name="todo"
-            placeholder="Add new todo..."
+            placeholder="Añade una nueva tarea..."
             className="w-full rounded-md border border-gray-200 dark:border-gray-700 px-4 py-2 focus:outline-none focus:border-blue-400 dark:bg-gray-800 dark:text-gray-100"
           />
         </form>
-        <div className="mt-4">
+        
+        <ul className="mt-4">
           {todos
             .filter((todo) => {
               if (filter === "active") {
@@ -83,10 +86,10 @@ function App() {
                 deleteTodo={deleteTodo}
               />
             ))}
-        </div>
+        </ul>
         <div className="flex justify-between items-center mt-4">
           <div className="text-sm">
-            {todos.filter((todo) => !todo.completed).length} items left
+            {todos.filter((todo) => !todo.completed).length} tareas pendientes
           </div>
           <div className="flex space-x-2">
             <button
@@ -95,7 +98,7 @@ function App() {
                 filter === "all" ? "font-bold" : "text-gray-500"
               }`}
             >
-              All
+              Todas las tareas
             </button>
             <button
               onClick={() => setFilter("active")}
@@ -103,7 +106,7 @@ function App() {
                 filter === "active" ? "font-bold" : "text-gray-500"
               }`}
             >
-              Active
+              Tareas activas
             </button>
             <button
               onClick={() => setFilter("complete")}
@@ -111,19 +114,19 @@ function App() {
                 filter === "complete" ? "font-bold" : "text-gray-500"
               }`}
             >
-              Completed
+              Tareas completadas
             </button>
           </div>
           <button
             onClick={clearCompleted}
             className="text-sm text-gray-500 hover:text-red-500"
           >
-            Clear Completed
+            Eliminar tareas completadas
           </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default App
