@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode:'class',
   theme: {
     extend: {
       backgroundImage:{
@@ -14,6 +15,12 @@ export default {
         'Josefin-sans': '"Josefin Sans", sans-serif;'
       }
     },
+  },
+  variants:{
+    extend:{
+      backgroundColor: ['dark'],
+      textColor: ['dark'],
+    }
   },
   plugins: [],
 }

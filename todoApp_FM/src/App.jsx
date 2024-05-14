@@ -14,7 +14,7 @@ function App() {
   const [filter, setFilter] = useState("all");
   const [theme, setTheme] = useState("light");
 
-  // guardar todos en localStorage cuando sea que cambien
+  // guardar TODOs en localStorage cuando sea que cambien
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -42,7 +42,7 @@ function App() {
   return (
     <div className={`App ${theme === "dark" ? "dark" : ""} font-Josefin-sans`}>
 
-      <header className={`bg-bg-${theme === "light" ? "lightMode" : "darkMode"} py-16 px-6 flex justify-center items-center gap-6`}>
+      <header className={`py-28 px-6 flex justify-center items-center gap-6 ${theme === "light" ? "bg-bg-lightMode" : "bg-bg-darkMode"}`}>
         <h1 className="text-white text-2xl font-bold">
           T O D O
         </h1>
@@ -62,7 +62,7 @@ function App() {
         </button>
       </header>
 
-      <main className="container mx-auto px-12 py-4">
+      <main className="px-4 md:px-12 py-4 dark:bg-gray-900 relative">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -81,7 +81,7 @@ function App() {
           />
         </form>
         
-        <ul className="mt-4">
+        <ul className="mt-4 shadow-xl rounded-md">
           {todos
             .filter((todo) => {
               if (filter === "active") {
@@ -101,38 +101,38 @@ function App() {
             ))}
         </ul>
         <div className="flex flex-col md:flex-row justify-between items-center mt-4">
-          <div className="text-sm">
+          <div className="text-sm md:text-base text-gray-500">
             {todos.filter((todo) => !todo.completed).length} tareas pendientes
           </div>
-          <div className="flex space-x-2">
+          <div className="bg-white p-4 md:bg-none flex space-x-2 rounded-md dark:bg-gray-800">
             <button
               onClick={() => setFilter("all")}
-              className={`text-sm ${
-                filter === "all" ? "font-bold" : "text-gray-500"
-              }`}
+              className={`text-sm md:text-base ${
+                filter === "all" ? "font-bold text-blue-500" : "text-gray-500"
+              } hover:text-black`}
             >
               Todas las tareas
             </button>
             <button
               onClick={() => setFilter("active")}
-              className={`text-sm ${
-                filter === "active" ? "font-bold" : "text-gray-500"
-              }`}
+              className={`text-sm md:text-base ${
+                filter === "active" ? "font-bold text-blue-500" : "text-gray-500"
+              } hover:text-black`}
             >
               Tareas activas
             </button>
             <button
               onClick={() => setFilter("complete")}
-              className={`text-sm ${
-                filter === "complete" ? "font-bold" : "text-gray-500"
-              }`}
+              className={`text-sm md:text-base ${
+                filter === "complete" ? "font-bold text-blue-500" : "text-gray-500"
+              } hover:text-black`}
             >
               Tareas completadas
             </button>
           </div>
           <button
             onClick={clearCompleted}
-            className="text-sm text-gray-500 hover:text-red-500"
+            className="text-sm md:text-base text-gray-500 hover:text-red-500"
           >
             Eliminar tareas completadas
           </button>
