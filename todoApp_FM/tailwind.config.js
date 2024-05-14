@@ -6,7 +6,13 @@ export default {
   ],
   theme: {
     extend: {
-      
+      backgroundImage:{
+        'bg-lightMode': 'url("./assets/bg-desktop-light.jpg")',
+        'bg-darkMode': 'url("./assets/bg-desktop-dark.jpg")'
+      },
+      fontFamily:{
+        'Josefin-sans': '"Josefin Sans", sans-serif;'
+      }
     },
   },
   plugins: [],
